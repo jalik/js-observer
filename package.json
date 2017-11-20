@@ -1,0 +1,41 @@
+{
+  "name": "jk-observer",
+  "version": "1.0.0",
+  "description": "The classic observer design pattern.",
+  "license": "MIT",
+  "keywords": [
+    "event",
+    "observer",
+    "listener"
+  ],
+  "author": {
+    "name": "Karl STEIN",
+    "email": "karl.stein.pro@gmail.com",
+    "url": "https://github.com/jalik"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jalik/jk-observer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jalik/jk-observer/issues"
+  },
+  "main": "dist/jk-observer.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "build:prod": "./node_modules/.bin/webpack --config webpack.config.js -p",
+    "prepublish": "npm run build && npm run build:prod && npm test",
+    "test": "jest",
+    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1",
+    "webpack": "^3.8.1"
+  }
+}
