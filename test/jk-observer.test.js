@@ -26,8 +26,7 @@ import {Observer} from "../src/jk-observer";
 describe("Observer", () => {
 
     it(`should be importable from package`, () => {
-        expect(Observer).not.toBe(null);
-        expect(Observer).not.toBe(undefined);
+        expect(typeof Observer).toEqual("function");
     });
 });
 
