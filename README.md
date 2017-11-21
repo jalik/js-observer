@@ -52,10 +52,10 @@ In the case that you need to remove a previously attached listener, here is the 
 import {Observer} from "jk-observer";
 
 const doubleClickListener = function() {
+    console.log("double click detected");
     // This avoid the current function to be called
     // on the next "doubleClick" event notification.
     observer.detach("doubleClick", doubleClickListener);
-    console.log("double click detected");
 };
 
 const observer = new Observer();
@@ -70,6 +70,9 @@ observer.notify("doubleClick");
 ```
 
 ## Changelog
+
+### v1.0.1
+- Updates documentation
 
 ### v1.0.0
 - First public release
