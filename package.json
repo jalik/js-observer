@@ -1,6 +1,6 @@
 {
   "name": "jk-observer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The classic observer design pattern.",
   "license": "MIT",
   "keywords": [
@@ -28,8 +28,7 @@
     "test": "jest",
     "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
