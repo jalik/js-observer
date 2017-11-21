@@ -7,7 +7,7 @@ The classic observer design pattern.
 The Observer design pattern is a well known pattern to create reactive applications.
 For example, your can attach listeners to a form text field, then when the text field value changes, all listeners are notified of that change and thus can do something in response. 
 
-**This library is tested.**
+**This library is tested with unit tests.**
 
 ## Attaching a listener and notify it
 
@@ -20,7 +20,7 @@ class Person {
     constructor(name) {
         this.name = name;
         // Create the observer with current context
-        this. observer = new Observer(this);
+        this.observer = new Observer(this);
     }
     
     on(event, listener) {
@@ -40,7 +40,7 @@ const karl = new Person("karl");
 // When this person says something,
 // we will display it in the console with the time
 karl.on("say", function(words, date) {
-        console.log(`${this.name} said: "${words}" at ${date.toString()}`);
+    console.log(`${this.name} said: "${words}" at ${date.toString()}`);
 });
 ```
 
@@ -52,12 +52,21 @@ In the case that you need to remove a previously attached listener, here is the 
 import {Observer} from "jk-observer";
 
 const doubleClickListener = function() {
-    console.log("you double clicked");
+    // This avoid the current function to be called
+    // on the next "doubleClick" event notification.
+    observer.detach("doubleClick", doubleClickListener);
+    console.log("double click detected");
 };
 
 const observer = new Observer();
-observer.attach("click", doubleClickListener);
-observer.detach("click", doubleClickListener);
+observer.attach("doubleClick", doubleClickListener);
+
+// This will call the doubleClickListener once.
+observer.notify("doubleClick");
+
+// This will not call the doubleClickListener
+// since it has been detached in the previous call.
+observer.notify("doubleClick");
 ```
 
 ## Changelog
