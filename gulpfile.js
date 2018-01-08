@@ -22,36 +22,29 @@
  * SOFTWARE.
  */
 
-const path = require("path");
-const Package = require("./package.json");
-const isProd = process.argv.indexOf("-p") !== -1;
-const filename = Package.name + (isProd ? ".min" : "");
+const gulp = require("gulp");
+const babel = require("gulp-babel");
+const stripComments = require("gulp-strip-comments");
+const watch = require("gulp-watch");
+const distPath = "dist";
 
-const paths = {
-    dist: path.join(__dirname, "aio"),
-    src: path.join(__dirname, "src"),
-};
+// Compile JavaScript files
+gulp.task("build", () => {
+    return gulp.src([
+        "src/**/*.js"
+    ])
+        .pipe(babel({presets: ["env"]}))
+        .pipe(stripComments())
+        .pipe(gulp.dest(distPath));
+});
 
-module.exports = {
-    entry: {
-        bundle: path.join(paths.src, `${Package.name}.js`)
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            }
-        ]
-    },
-    output: {
-        libraryTarget: "umd",
-        path: paths.dist,
-        filename: `${filename}.js`
-    },
-    resolve: {
-        extensions: [".js"],
-        modules: [paths.src, "node_modules"]
-    }
-};
+// Compile source files
+gulp.task("default", ["build"]);
+
+// Prepare files for publication
+gulp.task("prepublish", ["build"]);
+
+// Rebuild automatically
+gulp.task("watch", () => {
+    gulp.watch(["src/**/*.js"], ["build"]);
+});
