@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import {Observer} from "../src/jk-observer";
+import {Observer} from "../src/index";
 
 describe("Observer", () => {
 

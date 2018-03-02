@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/jalik/jk-observer/issues"
   },
-  "main": "dist/jk-observer.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
     "build:prod": "./node_modules/.bin/gulp prepublish",
@@ -30,7 +30,6 @@
     "test": "jest",
     "watch": "./node_modules/.bin/gulp watch"
   },
-  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
