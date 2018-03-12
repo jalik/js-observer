@@ -1,4 +1,4 @@
-# jk-observer
+# Observer
 
 The classic observer design pattern.
 
@@ -14,7 +14,7 @@ For example, your can attach listeners to a form text field, then when the text 
 The following code shows how to attach a listener and how to notify it of events.
 
 ```js
-import {Observer} from "jk-observer";
+import Observer from "@jalik/observer";
 
 class Person {
     constructor(name) {
@@ -49,7 +49,7 @@ karl.on("say", function(words, date) {
 In the case that you need to remove a previously attached listener, here is the code.
 
 ```js
-import {Observer} from "jk-observer";
+import Observer from "@jalik/observer";
 
 const doubleClickListener = function() {
     console.log("double click detected");
@@ -70,6 +70,9 @@ observer.notify("doubleClick");
 ```
 
 ## Changelog
+
+### v1.0.2
+- Exports `Observer` using ES6 default export
 
 ### v1.0.1
 - Updates documentation
