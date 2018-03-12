@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import {Observer} from "../src/index";
+import Observer from "../src/index";
 
 describe("Observer", () => {
 
@@ -36,7 +36,7 @@ describe("attach(event, fn)", () => {
     it(`should attach a listener to the event`, () => {
         const observer = new Observer();
         observer.attach("test", () => "TEST");
-        expect(observer.events["test"].length).toEqual(1);
+        expect(observer._events["test"].length).toEqual(1);
     });
 });
 
@@ -47,7 +47,7 @@ describe("detach(event, fn)", () => {
         const fn = () => "TEST";
         observer.attach("test", fn);
         observer.detach("test", fn);
-        expect(observer.events["test"].length).toEqual(0);
+        expect(observer._events["test"].length).toEqual(0);
     });
 });
 

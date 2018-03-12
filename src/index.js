@@ -25,12 +25,12 @@
 export class Observer {
 
     constructor(context) {
-        this.context = context;
-        this.events = {};
+        this._context = context;
+        this._events = {};
     }
 
     /**
-     * Add a listener to the event
+     * Adds an event listener
      * @param event
      * @param listener
      */
@@ -44,40 +44,32 @@ export class Observer {
             throw new TypeError("Callback is not a function");
         }
         // Create the array
-        if (!this.events[event]) {
-            this.events[event] = [];
+        if (!this._events[event]) {
+            this._events[event] = [];
         }
         // Add the event callback
-        this.events[event].push(listener);
+        this._events[event].push(listener);
     }
 
     /**
-     * Removes a callback from the event
+     * Removes an event listener
      * @param event
      * @param listener
      */
     detach(event, listener) {
-        if (this.events[event]) {
+        if (this._events[event]) {
             if (typeof listener === "function") {
-                const index = this.events[event].indexOf(listener);
-                this.events[event].splice(index, 1);
+                const index = this._events[event].indexOf(listener);
+                this._events[event].splice(index, 1);
             }
             else {
-                delete this.events[event];
+                delete this._events[event];
             }
         }
     }
 
     /**
-     * Defines events context
-     * @param context
-     */
-    setContext(context) {
-        this.context = context;
-    }
-
-    /**
-     * Executes all functions attached to an event
+     * Executes all callbacks attached to an event
      */
     notify() {
         const args = Array.prototype.slice.call(arguments);
@@ -94,10 +86,20 @@ export class Observer {
             throw new TypeError("Event is not a string");
         }
 
-        if (this.events[event] instanceof Array) {
-            for (let i = 0; i < this.events[event].length; i += 1) {
-                this.events[event][i].apply(this.context, args);
+        if (this._events[event] instanceof Array) {
+            for (let i = 0; i < this._events[event].length; i += 1) {
+                this._events[event][i].apply(this._context, args);
             }
         }
     }
+
+    /**
+     * Defines the context that is passed to event callbacks
+     * @param context
+     */
+    setContext(context) {
+        this._context = context;
+    }
 }
+
+export default Observer;
