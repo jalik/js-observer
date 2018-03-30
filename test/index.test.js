@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-import Index from "../dist/index";
-import Observer from "../dist/observer";
+import Index from '../src/index';
+import Observer from '../src/observer';
 
-describe(`Observer`, () => {
-    it(`should be importable from package`, () => {
-        expect(typeof Observer).toEqual("function");
-    });
-    it(`should be importable from index`, () => {
-        expect(typeof Index).toEqual("function");
-    });
+describe('Observer', () => {
+  it('should be importable from package', () => {
+    expect(typeof Observer).toEqual('function');
+  });
+  it('should be importable from index', () => {
+    expect(typeof Index).toEqual('function');
+  });
 });

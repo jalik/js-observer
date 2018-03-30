@@ -22,36 +22,37 @@
  * SOFTWARE.
  */
 
-const path = require("path");
-const Package = require("./package.json");
-const isProd = process.argv.indexOf("-p") !== -1;
-const filename = Package.name + (isProd ? ".min" : "");
+const path = require('path');
+const Package = require('./package.json');
+
+const isProd = process.argv.indexOf('-p') !== -1;
+const filename = Package.name + (isProd ? '.min' : '');
 
 const paths = {
-    dist: path.join(__dirname, "aio"),
-    src: path.join(__dirname, "src"),
+  dist: path.join(__dirname, 'aio'),
+  src: path.join(__dirname, 'src'),
 };
 
 module.exports = {
-    entry: {
-        bundle: path.join(paths.src, "index.js")
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            }
-        ]
-    },
-    output: {
-        libraryTarget: "umd",
-        path: paths.dist,
-        filename: `${filename}.js`
-    },
-    resolve: {
-        extensions: [".js"],
-        modules: [paths.src, "node_modules"]
-    }
+  entry: {
+    bundle: path.join(paths.src, 'index.js'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
+  output: {
+    libraryTarget: 'umd',
+    path: paths.dist,
+    filename: `${filename}.js`,
+  },
+  resolve: {
+    extensions: ['.js'],
+    modules: [paths.src, 'node_modules'],
+  },
 };

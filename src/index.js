@@ -22,6 +22,6 @@
  * SOFTWARE.
  */
 
-import Observer from "./observer";
+import Observer from './observer';
 
 export default Observer;
