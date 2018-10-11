@@ -1,4 +1,4 @@
-# Observer
+# @jalik/observer
 
 The classic observer design pattern.
 
