@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/jalik/js-observer/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/observer.js",
   "scripts": {
     "build": "npx gulp build",
     "lint": "npx eslint .",
