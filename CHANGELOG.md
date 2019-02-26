@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1
+- Updates dependencies
+- Changes index to `src/observer.js`
+
 ## v1.1.0
 - Lib available in ES6+ syntax (see `src` folder) to enable auto-completion in IDEs
 
