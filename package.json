@@ -1,6 +1,6 @@
 {
   "name": "@jalik/observer",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A library to observe events and trigger callbacks.",
   "license": "MIT",
   "keywords": [
