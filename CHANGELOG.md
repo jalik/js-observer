@@ -1,8 +1,12 @@
 # Changelog
 
-## v1.1.8
+## v1.1.9
+- Renamed index.js to Observer.js
+
+## v1.1.8 (deprecated)
+**This version has been published with unwanted changes**
 - Added `esnext` and `sideEffects` in package.json
-- Renamed the main file to index.js
+- Renamed observer.js to index.js
 - Upgraded dependencies
 
 ## v1.1.7

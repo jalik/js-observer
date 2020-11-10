@@ -20,8 +20,8 @@
   "bugs": {
     "url": "https://github.com/jalik/js-observer/issues"
   },
-  "main": "dist/index.js",
-  "esnext": "src/index.js",
+  "main": "dist/Observer.js",
+  "esnext": "src/Observer.js",
   "sideEffects": false,
   "scripts": {
     "build": "babel src -d dist",
