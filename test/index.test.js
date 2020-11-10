@@ -3,7 +3,7 @@
  * Copyright (c) 2020 Karl STEIN
  */
 
-import Observer from '../src/observer';
+import Observer from '../src';
 
 describe('Observer', () => {
   it('should be importable from package', () => {
