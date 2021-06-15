@@ -1,4 +1,5 @@
 # @jalik/observer
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jalik/js-observer.svg)
 [![Build Status](https://travis-ci.com/jalik/js-observer.svg?branch=master)](https://travis-ci.com/jalik/js-observer)
 ![GitHub](https://img.shields.io/github/license/jalik/js-observer.svg)
@@ -10,8 +11,9 @@ The classic observer design pattern.
 
 ## Introduction
 
-The Observer design pattern is a well known pattern to create reactive applications.
-For example, your can attach observers to a form text field, then when the text field value changes, all observers are notified of that change and thus can do something in response. 
+The Observer design pattern is a well known pattern to create reactive applications. For example,
+your can attach observers to a form text field, then when the text field value changes, all
+observers are notified of that change and thus can do something in response.
 
 ## Attaching an observer and notify it
 
@@ -21,29 +23,29 @@ The following code shows how to attach an observer and how to notify it of event
 import Observer from "@jalik/observer";
 
 class Person {
-    constructor(name) {
-        this.name = name;
-        // Create the observer with current context
-        this.observer = new Observer(this);
-    }
-    
-    on(event, observer) {
-        // Attach observer
-        this.observer.attach(event, observer);
-    }
-    
-    say(words) {
-        // Notify observers
-        this.observer.notify("say", words, new Date());
-    }
+  constructor(name) {
+    this.name = name;
+    // Create the observer with current context
+    this.observer = new Observer(this);
+  }
+
+  on(event, observer) {
+    // Attach observer
+    this.observer.attach(event, observer);
+  }
+
+  say(words) {
+    // Notify observers
+    this.observer.notify("say", words, new Date());
+  }
 }
 
 const karl = new Person("karl");
 
 // When this person says something,
 // we will display it in the console with the time
-karl.on("say", function(words, date) {
-    console.log(`${this.name} said: "${words}" at ${date.toString()}`);
+karl.on("say", function (words, date) {
+  console.log(`${this.name} said: "${words}" at ${date.toString()}`);
 });
 ```
 
@@ -54,11 +56,11 @@ In the case that you need to remove a previously attached observer, here is the 
 ```js
 import Observer from "@jalik/observer";
 
-const doubleClickListener = function() {
-    console.log("double click detected");
-    // This avoid the current function to be called
-    // on the next "doubleClick" event notification.
-    observer.detach("doubleClick", doubleClickListener);
+const doubleClickListener = function () {
+  console.log("double click detected");
+  // This avoid the current function to be called
+  // on the next "doubleClick" event notification.
+  observer.detach("doubleClick", doubleClickListener);
 };
 
 const observer = new Observer();
