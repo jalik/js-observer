@@ -25,9 +25,9 @@
   "module": "./src/Observer.js",
   "sideEffects": false,
   "scripts": {
-    "build": "babel src -d dist",
-    "clean": "rimraf dist",
-    "dev": "babel --watch src -d dist",
+    "build": "babel ./src -d ./dist",
+    "clean": "rimraf ./dist",
+    "dev": "babel --watch ./src -d ./dist",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "prepare": "npm run clean && npm run build && npm run lint",
