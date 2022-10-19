@@ -17,6 +17,24 @@ describe('Observer', () => {
 });
 
 describe('attach(event, fn)', () => {
+  describe('with missing event', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        const observer = new Observer();
+        observer.attach();
+      }).toThrow();
+    });
+  });
+
+  describe('with missing listener', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        const observer = new Observer();
+        observer.attach('changed');
+      }).toThrow();
+    });
+  });
+
   it('should attach a listener to the event', () => {
     const observer = new Observer();
     observer.attach('test', () => 'TEST');
@@ -35,6 +53,15 @@ describe('detach(event, fn)', () => {
 });
 
 describe('notify(event, args...)', () => {
+  describe('with missing event', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        const observer = new Observer();
+        observer.notify();
+      }).toThrow();
+    });
+  });
+
   it('should execute all listeners attached to the event', () => {
     const observer = new Observer();
     let count = 0;
@@ -78,13 +105,20 @@ describe('notify(event, args...)', () => {
   });
 
   it('should pass context to listener on each notification', () => {
-    const context = { date: new Date() };
+    const context = { version: 1 };
     const observer = new Observer(context);
-    observer.attach('time', function assignDate(date) {
-      this.date = date;
-    });
-    const newDate = new Date().getTime();
-    observer.notify('time', newDate);
-    expect(context.date).toEqual(newDate);
+    observer.attach('changed', function changed() { this.version += 1; });
+    observer.notify('changed');
+    expect(observer.context.version).toEqual(2);
+  });
+});
+
+describe('setContext(object)', () => {
+  it('should set context', () => {
+    const context1 = { version: 1 };
+    const context2 = { version: 2 };
+    const observer = new Observer(context1);
+    observer.setContext(context2);
+    expect(observer.context.version).toBe(context2.version);
   });
 });
