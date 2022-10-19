@@ -1,6 +1,6 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2020 Karl STEIN
+ * Copyright (c) 2022 Karl STEIN
  */
 
 class Observer {
@@ -37,30 +37,19 @@ class Observer {
    * @param listener
    */
   detach(event, listener) {
-    if (this.events[event]) {
-      if (typeof listener === 'function') {
-        const index = this.events[event].indexOf(listener);
-        this.events[event].splice(index, 1);
-      } else {
-        delete this.events[event];
-      }
+    if (this.events[event] && typeof listener === 'function') {
+      const index = this.events[event].indexOf(listener);
+      this.events[event].splice(index, 1);
     }
   }
 
   /**
    * Executes all callbacks attached to an event
    */
-  notify(...args) {
-    // Check args
-    if (args.length < 1) {
-      throw new TypeError('Wrong number of arguments');
-    }
-
-    const event = args.shift();
-
-    // Check the event
-    if (typeof event !== 'string') {
-      throw new TypeError('Event is not a string');
+  notify(event, ...args) {
+    // Check event
+    if (typeof event !== 'string' || event.length === 0) {
+      throw new TypeError('missing event name in notify()');
     }
 
     if (this.events[event] instanceof Array) {
