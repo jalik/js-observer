@@ -1,8 +1,13 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2020 Karl STEIN
+ * Copyright (c) 2022 Karl STEIN
  */
 
+import {
+  describe,
+  expect,
+  it,
+} from '@jest/globals';
 import Observer from '../src/Observer';
 
 describe('Observer', () => {
