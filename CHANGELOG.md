@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1 (2023-04-14)
+
+- Added missing dev dependency (rimraf)
+
 ## v1.2.0 (2023-04-14)
 
 - Added TypeScript declaration files
