@@ -5,9 +5,21 @@
     "jest": true,
     "node": true
   },
-  "extends": "airbnb-base",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
   "plugins": [
     "import",
-    "jest"
-  ]
+    "jest",
+    "@typescript-eslint/eslint-plugin"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "warn"
+  }
 }

@@ -7,7 +7,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/jalik/js-observer.svg)](https://github.com/jalik/js-observer/issues)
 ![npm](https://img.shields.io/npm/dt/@jalik/observer.svg)
 
-The classic observer design pattern.
+Observe and emit events with ease.
+
+Includes TypeScript declaration files.
 
 ## Introduction
 
@@ -42,11 +44,11 @@ class Person {
 
 const karl = new Person("karl");
 
-// When this person says something,
-// we will display it in the console with the time
 karl.on("say", function (words, date) {
-  console.log(`${this.name} said: "${words}" at ${date.toString()}`);
+  console.log(`${this.name} said: "${words}"`);
 });
+// this will show: karl said: "hello"
+karl.say("hello");
 ```
 
 ## Detaching an observer

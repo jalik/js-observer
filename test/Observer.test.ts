@@ -1,13 +1,9 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2022 Karl STEIN
+ * Copyright (c) 2023 Karl STEIN
  */
 
-import {
-  describe,
-  expect,
-  it,
-} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import Observer from '../src/Observer';
 
 describe('Observer', () => {
@@ -21,6 +17,7 @@ describe('attach(event, fn)', () => {
     it('should throw an error', () => {
       expect(() => {
         const observer = new Observer();
+        // @ts-ignore
         observer.attach();
       }).toThrow();
     });
@@ -30,6 +27,7 @@ describe('attach(event, fn)', () => {
     it('should throw an error', () => {
       expect(() => {
         const observer = new Observer();
+        // @ts-ignore
         observer.attach('changed');
       }).toThrow();
     });
@@ -57,6 +55,7 @@ describe('notify(event, args...)', () => {
     it('should throw an error', () => {
       expect(() => {
         const observer = new Observer();
+        // @ts-ignore
         observer.notify();
       }).toThrow();
     });
@@ -107,7 +106,9 @@ describe('notify(event, args...)', () => {
   it('should pass context to listener on each notification', () => {
     const context = { version: 1 };
     const observer = new Observer(context);
-    observer.attach('changed', function changed() { this.version += 1; });
+    observer.attach('changed', function changed() {
+      this.version += 1;
+    });
     observer.notify('changed');
     expect(observer.context.version).toEqual(2);
   });
