@@ -1,10 +1,10 @@
 # @jalik/observer
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jalik/js-observer.svg)
-[![Build Status](https://travis-ci.com/jalik/js-observer.svg?branch=master)](https://travis-ci.com/jalik/js-observer)
-![GitHub](https://img.shields.io/github/license/jalik/js-observer.svg)
+![Build Status](https://github.com/jalik/js-observer/actions/workflows/node.js.yml/badge.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jalik/js-observer.svg)
 [![GitHub issues](https://img.shields.io/github/issues/jalik/js-observer.svg)](https://github.com/jalik/js-observer/issues)
+![GitHub](https://img.shields.io/github/license/jalik/js-observer.svg)
 ![npm](https://img.shields.io/npm/dt/@jalik/observer.svg)
 
 Observe and emit events with ease.
