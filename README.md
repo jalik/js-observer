@@ -9,13 +9,16 @@
 
 Observe and emit events with ease.
 
-Includes TypeScript declaration files.
-
 ## Introduction
 
 The Observer design pattern is a well known pattern to create reactive applications. For example,
 your can attach observers to a form text field, then when the text field value changes, all
 observers are notified of that change and thus can do something in response.
+
+## Sandbox
+
+Play with the lib here:
+https://codesandbox.io/s/jalik-observer-demo-de16gw?file=/src/index.js
 
 ## Attaching an observer and notify it
 
