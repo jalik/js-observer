@@ -3,8 +3,9 @@
  * Copyright (c) 2023 Karl STEIN
  */
 
-import Observer from './Observer';
+import Observer from './Observer'
 
-export { Observer };
+export { Observer }
 
-export default Observer;
+// todo remove default export
+export default Observer

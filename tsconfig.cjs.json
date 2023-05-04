@@ -4,5 +4,5 @@
     "module": "CommonJS",
     "outDir": "./dist",
     "target": "ES5"
-  },
+  }
 }

@@ -3,15 +3,18 @@
  * Copyright (c) 2023 Karl STEIN
  */
 
-interface Observer<T> {
+interface IObserver<T> {
   context?: T;
-  events: { [key: string]: Array<(...args: any[]) => void> };
+  events: Record<string, Array<(...args: any[]) => void>>;
 }
 
-class Observer<T> implements Observer<T> {
-  constructor(context?: T) {
-    this.context = context;
-    this.events = {};
+class Observer<T> implements IObserver<T> {
+  public context: T | undefined
+  public events: Record<string, Array<(...args: any[]) => void>>
+
+  constructor (context?: T) {
+    this.context = context
+    this.events = {}
   }
 
   /**
@@ -19,15 +22,15 @@ class Observer<T> implements Observer<T> {
    * @param event
    * @param callback
    */
-  attach(event: string, callback: (...args: any[]) => void): void {
+  attach (event: string, callback: (...args: any[]) => void): void {
     if (event == null) {
-      throw new Error('missing event');
+      throw new Error('missing event')
     }
     if (callback == null) {
-      throw new Error('missing callback');
+      throw new Error('missing callback')
     }
-    const listeners = this.events[event] || [];
-    this.events[event] = [...listeners, callback];
+    const listeners = this.events[event] || []
+    this.events[event] = [...listeners, callback]
   }
 
   /**
@@ -35,38 +38,38 @@ class Observer<T> implements Observer<T> {
    * @param event
    * @param callback
    */
-  detach(event: string, callback: (...args: any[]) => void): void {
+  detach (event: string, callback: (...args: any[]) => void): void {
     if (event == null) {
-      throw new Error('missing event');
+      throw new Error('missing event')
     }
     if (callback == null) {
-      throw new Error('missing callback');
+      throw new Error('missing callback')
     }
-    const listeners = this.events[event] || [];
-    this.events[event] = listeners.filter((fn) => fn !== callback);
+    const listeners = this.events[event] || []
+    this.events[event] = listeners.filter((fn) => fn !== callback)
   }
 
   /**
    * Executes all callbacks attached to an event
    */
-  notify(event: string, ...args: any[]): void {
+  notify (event: string, ...args: any[]): void {
     if (event == null) {
-      throw new Error('missing event');
+      throw new Error('missing event')
     }
-    const listeners = this.events[event] || [];
+    const listeners = this.events[event] || []
 
     listeners.forEach((fn) => {
-      fn.apply(this.context, args);
-    });
+      fn.apply(this.context, args)
+    })
   }
 
   /**
    * Defines the context that is passed to event callbacks
    * @param context
    */
-  setContext(context?: T): void {
-    this.context = context;
+  setContext (context?: T): void {
+    this.context = context
   }
 }
 
-export default Observer;
+export default Observer
