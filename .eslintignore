@@ -5,7 +5,7 @@
 node_modules/
 
 # Compiled files
-/dist/
+/cjs/
 /esm/
 
 # Coverage
