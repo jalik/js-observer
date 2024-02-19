@@ -7,76 +7,79 @@
 ![GitHub](https://img.shields.io/github/license/jalik/js-observer.svg)
 ![npm](https://img.shields.io/npm/dt/@jalik/observer.svg)
 
-Observe and emit events with ease.
+Make anything observable.
 
 ## Introduction
 
-The Observer design pattern is a well known pattern to create reactive applications. For example,
-your can attach observers to a form text field, then when the text field value changes, all
+The Observer design pattern is a well known pattern to create reactive applications.  
+You can attach observers to a form text field, then when the text field value changes, all
 observers are notified of that change and thus can do something in response.
+
+## Features
+
+* Add event listeners
+* Remove event listeners
+* Emit events with arguments passed to listeners
+* Includes TypeScript declarations
 
 ## Sandbox
 
 Play with the lib here:
 https://codesandbox.io/s/jalik-observer-demo-de16gw?file=/src/index.js
 
-## Attaching an observer and notify it
-
-The following code shows how to attach an observer and how to notify it of events.
+## Adding an event listener
 
 ```js
-import Observer from "@jalik/observer";
+import { Observer } from '@jalik/observer'
 
 class Person {
-  constructor(name) {
-    this.name = name;
+  constructor (name) {
+    this.name = name
     // Create the observer with current context
-    this.observer = new Observer(this);
+    this.observer = new Observer(this)
   }
 
-  on(event, observer) {
+  on (event, observer) {
     // Attach observer
-    this.observer.attach(event, observer);
+    this.observer.on(event, observer)
   }
 
-  say(words) {
+  say (words) {
     // Notify observers
-    this.observer.notify("say", words, new Date());
+    this.observer.emit('say', words, new Date())
   }
 }
 
-const karl = new Person("karl");
+const karl = new Person('karl')
 
-karl.on("say", function (words, date) {
-  console.log(`${this.name} said: "${words}"`);
-});
+karl.on('say', function (words, date) {
+  console.log(`${this.name} said: "${words}"`)
+})
 // this will show: karl said: "hello"
-karl.say("hello");
+karl.say('hello')
 ```
 
-## Detaching an observer
-
-In the case that you need to remove a previously attached observer, here is the code.
+## Removing an event listener
 
 ```js
-import Observer from "@jalik/observer";
+import { Observer } from '@jalik/observer'
 
-const doubleClickListener = function () {
-  console.log("double click detected");
+const listener = function () {
+  console.log('double click detected')
   // This avoid the current function to be called
   // on the next "doubleClick" event notification.
-  observer.detach("doubleClick", doubleClickListener);
-};
+  observer.off('doubleClick', listener)
+}
 
-const observer = new Observer();
-observer.attach("doubleClick", doubleClickListener);
+const observer = new Observer()
+observer.on('doubleClick', listener)
 
 // This will call the doubleClickListener once.
-observer.notify("doubleClick");
+observer.emit('doubleClick')
 
 // This will not call the doubleClickListener
 // since it has been detached in the previous call.
-observer.notify("doubleClick");
+observer.emit('doubleClick')
 ```
 
 ## Changelog
