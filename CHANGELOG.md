@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1 (2024-02-19)
+
+- Fixed CJS file reference in package.json
+
 ## v2.0.0 (2024-02-19)
 
 - **[BREAKING]** Use `Map` instead of `Array` to manage event listeners

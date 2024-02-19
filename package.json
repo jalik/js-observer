@@ -22,17 +22,17 @@
   },
   "sideEffects": false,
   "esnext": "./esm/index.js",
-  "main": "./dist/index.js",
+  "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "files": [
-    "/dist",
+    "/cjs",
     "/esm"
   ],
   "scripts": {
     "build": "npm run build-cjs && npm run build-esm",
     "build-cjs": "tsc -p tsconfig.cjs.json",
     "build-esm": "tsc",
-    "clean": "rimraf ./dist ./esm",
+    "clean": "rimraf ./cjs ./esm",
     "dev-cjs": "tsc --watch -p tsconfig.cjs.json",
     "dev-esm": "tsc --watch",
     "dev": "concurrently 'npm:dev-*'",
