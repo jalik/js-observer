@@ -1,6 +1,6 @@
 # Changelog
 
-## v2.0.1 (2024-02-19)
+## v2.1.0 (2024-02-19)
 
 - Fixed CJS file reference in package.json
 
