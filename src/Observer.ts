@@ -1,73 +1,59 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2023 Karl STEIN
+ * Copyright (c) 2024 Karl STEIN
  */
 
-interface IObserver<T> {
-  context?: T;
-  events: Record<string, Array<(...args: any[]) => void>>;
+export type Listener = (...args: any[]) => void
+
+interface IObserver<Context, Event extends string> {
+  context?: Context;
+  events: Map<Event, Listener[]>;
 }
 
-class Observer<T> implements IObserver<T> {
-  public context: T | undefined
-  public events: Record<string, Array<(...args: any[]) => void>>
+class Observer<Context, Event extends string> implements IObserver<Context, Event> {
+  public context?: Context
+  public events: Map<Event, Listener[]>
 
-  constructor (context?: T) {
+  constructor (context?: Context) {
     this.context = context
-    this.events = {}
+    this.events = new Map<Event, Listener[]>()
   }
 
   /**
-   * Adds an event callback
+   * Adds an event listener.
    * @param event
-   * @param callback
+   * @param listener
    */
-  attach (event: string, callback: (...args: any[]) => void): void {
-    if (event == null) {
-      throw new Error('missing event')
-    }
-    if (callback == null) {
-      throw new Error('missing callback')
-    }
-    const listeners = this.events[event] || []
-    this.events[event] = [...listeners, callback]
+  attach (event: Event, listener: Listener): void {
+    const listeners = this.events.get(event) || []
+    this.events.set(event, [...listeners, listener])
   }
 
   /**
-   * Removes an event callback
+   * Removes an event listener.
    * @param event
-   * @param callback
+   * @param listener
    */
-  detach (event: string, callback: (...args: any[]) => void): void {
-    if (event == null) {
-      throw new Error('missing event')
-    }
-    if (callback == null) {
-      throw new Error('missing callback')
-    }
-    const listeners = this.events[event] || []
-    this.events[event] = listeners.filter((fn) => fn !== callback)
+  detach (event: Event, listener: Listener): void {
+    const listeners = this.events.get(event) || []
+    this.events.set(event, listeners.filter((fn) => fn !== listener))
   }
 
   /**
-   * Executes all callbacks attached to an event
+   * Executes all listeners attached to an event.
    */
-  notify (event: string, ...args: any[]): void {
-    if (event == null) {
-      throw new Error('missing event')
-    }
-    const listeners = this.events[event] || []
-
+  notify (event: Event, ...args: unknown[]): void {
+    const listeners = this.events.get(event) || []
     listeners.forEach((fn) => {
       fn.apply(this.context, args)
     })
   }
 
   /**
-   * Defines the context that is passed to event callbacks
+   * Defines the context that is passed to event listeners.
    * @param context
    */
-  setContext (context?: T): void {
+  setContext (context?: Context): void {
     this.context = context
   }
 }
