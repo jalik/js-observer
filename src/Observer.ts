@@ -20,13 +20,13 @@ class Observer<Context, Event extends string> implements IObserver<Context, Even
   }
 
   /**
-   * Adds an event listener.
-   * @param event
-   * @param listener
+   * Executes all listeners attached to an event.
    */
-  attach (event: Event, listener: Listener): void {
+  emit (event: Event, ...args: unknown[]): void {
     const listeners = this.events.get(event) || []
-    this.events.set(event, [...listeners, listener])
+    listeners.forEach((fn) => {
+      fn.apply(this.context, args)
+    })
   }
 
   /**
@@ -34,19 +34,19 @@ class Observer<Context, Event extends string> implements IObserver<Context, Even
    * @param event
    * @param listener
    */
-  detach (event: Event, listener: Listener): void {
+  off (event: Event, listener: Listener): void {
     const listeners = this.events.get(event) || []
     this.events.set(event, listeners.filter((fn) => fn !== listener))
   }
 
   /**
-   * Executes all listeners attached to an event.
+   * Adds an event listener.
+   * @param event
+   * @param listener
    */
-  notify (event: Event, ...args: unknown[]): void {
+  on (event: Event, listener: Listener): void {
     const listeners = this.events.get(event) || []
-    listeners.forEach((fn) => {
-      fn.apply(this.context, args)
-    })
+    this.events.set(event, [...listeners, listener])
   }
 
   /**
