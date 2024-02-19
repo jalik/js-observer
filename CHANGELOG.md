@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.0.0 (2024-02-19)
+
+- **[BREAKING]** Use `Map` instead of `Array` to manage event listeners
+- **[BREAKING]** Renamed `attach()` to `on()`
+- **[BREAKING]** Renamed `detach()` to `off()`
+- **[BREAKING]** Renamed `notify()` to `emit()`
+- **[BREAKING]** Removed default export of `Observer` (use named import)
+- **[BREAKING]** Changed CJS build output directory
+- Added TypeScript generics to set context and event types (`Observer<Context, Event>`)
+- Upgraded dependencies
+
 ## v1.2.1 (2023-04-14)
 
 - Added missing dev dependency (rimraf)
