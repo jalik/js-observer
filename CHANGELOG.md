@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.0 (2024-02-20)
+
+- Added class `Observable` to add `on()`, `off()` and `emit()` to any class
+
 ## v2.1.0 (2024-02-19)
 
 - Fixed CJS file reference in package.json
