@@ -4,5 +4,6 @@
  */
 
 import Observer from './Observer'
+import Observable from './Observable'
 
-export { Observer }
+export { Observer, Observable }

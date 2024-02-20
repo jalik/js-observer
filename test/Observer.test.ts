@@ -4,31 +4,11 @@
  */
 
 import { describe, expect, it } from '@jest/globals'
-import Observer from '../src/Observer'
+import { Observer } from '../src'
 
 describe('Observer', () => {
   it('should be importable from package', () => {
     expect(typeof Observer).toBe('function')
-  })
-})
-
-describe('on(event, fn)', () => {
-  it('should attach a listener to the event', () => {
-    const observer = new Observer<void, 'test'>()
-    observer.on('test', () => 'TEST')
-    expect(observer.events.has('test')).toBe(true)
-    expect(observer.events.get('test')?.length).toBe(1)
-  })
-})
-
-describe('off(event, fn)', () => {
-  it('should detach a listener from the event', () => {
-    const observer = new Observer<void, 'test'>()
-    const fn = () => 'TEST'
-    observer.on('test', fn)
-    observer.off('test', fn)
-    expect(observer.events.has('test')).toBe(true)
-    expect(observer.events.get('test')?.length).toBe(0)
   })
 })
 
@@ -83,6 +63,26 @@ describe('emit(event, args...)', () => {
     })
     observer.emit('changed')
     expect(observer.context).toStrictEqual({ v: 2 })
+  })
+})
+
+describe('off(event, fn)', () => {
+  it('should detach a listener from the event', () => {
+    const observer = new Observer<void, 'test'>()
+    const fn = () => 'TEST'
+    observer.on('test', fn)
+    observer.off('test', fn)
+    expect(observer.events.has('test')).toBe(true)
+    expect(observer.events.get('test')?.length).toBe(0)
+  })
+})
+
+describe('on(event, fn)', () => {
+  it('should attach a listener to the event', () => {
+    const observer = new Observer<void, 'test'>()
+    observer.on('test', () => 'TEST')
+    expect(observer.events.has('test')).toBe(true)
+    expect(observer.events.get('test')?.length).toBe(1)
   })
 })
 
