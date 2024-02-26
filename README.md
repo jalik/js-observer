@@ -20,12 +20,21 @@ observers are notified of that change and thus can do something in response.
 * Add event listeners
 * Remove event listeners
 * Emit events with arguments passed to listeners
-* Includes TypeScript declarations
+* TypeScript declarations ♥
 
 ## Sandbox
 
 Play with the lib here:
 https://codesandbox.io/s/jalik-observer-demo-de16gw?file=/src/index.js
+
+## Installing
+
+```shell
+npm i -P @jalik/observer
+```
+```shell
+yarn add @jalik/observer
+```
 
 ## Adding an event listener
 
