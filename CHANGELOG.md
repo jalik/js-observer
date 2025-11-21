@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.1 (2025-11-21)
+
+- deps: upgrade dependencies
+
 ## v2.2.0 (2024-02-20)
 
 - Added class `Observable` to add `on()`, `off()` and `emit()` to any class
