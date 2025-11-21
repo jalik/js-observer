@@ -43,19 +43,19 @@
     "test": "jest --passWithNoTests --coverage=true"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.9",
-    "@babel/preset-env": "^7.23.9",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/cli": "^7.28.3",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
     "@jest/globals": "^29.7.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^8.57.1",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^27.9.0",
     "jest": "^29.7.0",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.3.3"
+    "rimraf": "^6.1.2",
+    "typescript": "^5.9.3"
   }
 }
