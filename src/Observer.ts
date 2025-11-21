@@ -1,6 +1,6 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2024 Karl STEIN
+ * Copyright (c) 2025 Karl STEIN
  */
 
 export type Listener = (...args: any[]) => void
@@ -23,7 +23,7 @@ class Observer<Context, Event extends string> implements IObserver<Context, Even
    * Executes all listeners attached to an event.
    */
   emit (event: Event, ...args: unknown[]): void {
-    const listeners = this.events.get(event) || []
+    const listeners = this.events.get(event) ?? []
     listeners.forEach((fn) => {
       fn.apply(this.context, args)
     })
@@ -35,7 +35,7 @@ class Observer<Context, Event extends string> implements IObserver<Context, Even
    * @param listener
    */
   off (event: Event, listener: Listener): void {
-    const listeners = this.events.get(event) || []
+    const listeners = this.events.get(event) ?? []
     this.events.set(event, listeners.filter((fn) => fn !== listener))
   }
 
@@ -45,7 +45,7 @@ class Observer<Context, Event extends string> implements IObserver<Context, Even
    * @param listener
    */
   on (event: Event, listener: Listener): void {
-    const listeners = this.events.get(event) || []
+    const listeners = this.events.get(event) ?? []
     this.events.set(event, [...listeners, listener])
   }
 
