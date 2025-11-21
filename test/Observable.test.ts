@@ -1,9 +1,9 @@
 /*
  * The MIT License (MIT)
- * Copyright (c) 2024 Karl STEIN
+ * Copyright (c) 2025 Karl STEIN
  */
 
-import { describe, expect, it, jest } from '@jest/globals'
+import { describe, expect, it, vi } from 'vitest'
 import { Observable } from '../src'
 
 class Person extends Observable<'eat'> {
@@ -17,7 +17,7 @@ describe('Observable', () => {
 
 describe('emit(event, ...args)', () => {
   it('should call event listeners', () => {
-    const fn = jest.fn()
+    const fn = vi.fn()
     const person = new Person()
     person.on('eat', fn)
     person.emit('eat', 'sushis')
@@ -27,7 +27,7 @@ describe('emit(event, ...args)', () => {
 
 describe('off(event, listener)', () => {
   it('should remove event listener', () => {
-    const fn = jest.fn()
+    const fn = vi.fn()
     const person = new Person()
     person.on('eat', fn)
     person.off('eat', fn)
